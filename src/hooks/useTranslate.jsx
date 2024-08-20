@@ -3,7 +3,7 @@ import { OpenAI } from "openai";
 
 const openai = new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
-  dangerouslyAllowBrowser: false, // Caution: Be aware of the risks
+  dangerouslyAllowBrowser: true, // Caution: Be aware of the risks
 });
 
 const useTranslate = (sourceText, selectedLanguage) => {
@@ -13,7 +13,7 @@ const useTranslate = (sourceText, selectedLanguage) => {
     const handleTranslate = async (sourceText) => {
       try {
         const response = await openai.chat.completions.create({
-          model: "gpt-4", // Use a valid model name
+          model: "gpt-4", 
           messages: [
             {
               role: "user",
@@ -37,7 +37,7 @@ const useTranslate = (sourceText, selectedLanguage) => {
     if (sourceText.trim()) {
       const timeoutId = setTimeout(() => {
         handleTranslate(sourceText);
-      }, 500); // Adjust the delay as needed
+      }, 500); 
 
       return () => clearTimeout(timeoutId);
     }
