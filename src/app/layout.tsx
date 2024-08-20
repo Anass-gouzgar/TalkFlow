@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Script from "next/script"; 
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TalkFlow",
-  description:
-    "An AI Voice & Text Translation platform.",
+  description: "An AI Voice & Text Translation platform.",
   keywords: [
     "TalkFlow",
     "AI Translation",
@@ -29,7 +29,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {children}
-        <script src="./node_modules/preline/dist/preline.js"></script>
+        <Script
+          src="./node_modules/preline/dist/preline.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
